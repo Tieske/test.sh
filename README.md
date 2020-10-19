@@ -1,4 +1,6 @@
 # test.sh
+![Travis (.org) branch](https://img.shields.io/travis/com/Tieske/test.sh/master?logo=travis)
+
 Minimalistic test framework for shell scripts.
 
 A test setup consists of `tests.sh` as test-runner (or `run.sh`), which is to be

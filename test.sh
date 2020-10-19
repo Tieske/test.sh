@@ -287,10 +287,10 @@ cat <<EOF > "$FILENAME"
 There is one dependency; "test.sh", the "figlet" utility is optional.
 
 Usage test.sh:
-  1: ./test.sh [--suite <suite name>] [files...]
+  1: ./test.sh [--suite <suite name>] [files/dirs...]
   2: ./test.sh --create <testfile> <suite name>
 
-  1: Runs tests. When "files" is not provided, it will run all "*.test.sh" files
+  1: Runs tests. When "files/dirs" is not provided, it will run all "*.test.sh" files
   located in the same directory as "test.sh". The suite name defaults to "unknown
   test suite".
 
@@ -390,10 +390,20 @@ function main {
     # filenames passed; only execute filenames passed in
     while [[ $# -gt 0 ]]; do
       if [ ! -f "$1" ] ; then
-        echo "test file not found: $1"
-        texit 1
+        if [ ! -d "$1" ] ; then
+          echo "test file not found: $1"
+          texit 1
+        fi
+        # it's a directory, add all files in it
+        for FILENAME in "$1"/*.test.sh; do
+          if [ -f "$FILENAME" ] ; then
+            FILE_LIST+=("$FILENAME")
+          fi
+        done
+      else
+        # add a single file
+        FILE_LIST+=("$1")
       fi
-      FILE_LIST+=("$1")
       shift
     done
 

@@ -59,15 +59,17 @@ pulls the latest version of `test.sh` from github.
 
 ### Usage `test.sh`:
 
-- `./test.sh [--suite <suite name>] [files...]`
+- `./test.sh [--suite <suite name>] [files/dirs...]`
 
   Runs the tests.
 
   Arguments:
   * `--suite <suite name>` (optional) The suite name, defaults to "unknown
     test suite". This name will override the name in the individual test files.
-  * `[files...]` (optional) List of test files to execute. By default it will
+  * `[files/dirs...]` (optional) List of test files to execute. By default it will
     run all `*.test.sh` files located in the same directory as `test.sh`.
+    If a filename is a directory then all `*.test.sh` in that directory will be
+    added.
 
 - `./test.sh --create <testfile> <suite name>`
 

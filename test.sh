@@ -56,7 +56,9 @@ function tfooter {
   # 1) successes
   # 2) failures
   # 3) [optional] boolean; if set Project title, otherwise Chapter title
+  local indent=""
   if [[ "$3" == "" ]]; then
+    indent="  "
     local chapter
     if [[ "$T_FILE_NAME" == "" ]]; then
       chapter=$T_CURRENT_CHAPTER
@@ -64,13 +66,13 @@ function tfooter {
       chapter="$T_CURRENT_CHAPTER ($T_FILE_NAME)"
     fi
     echo "------------------------------------------------------------------------------------------------------------------------"
-    echo -e "$T_COLOR_YELLOW  Chapter : $chapter$T_COLOR_CLEAR"
+    echo -e "$T_COLOR_YELLOW$indent""Chapter : $chapter$T_COLOR_CLEAR"
   else
     echo "========================================================================================================================"
-    echo -e "$T_COLOR_YELLOW  Project  : $T_PROJECT_NAME$T_COLOR_CLEAR"
+    echo -e "$T_COLOR_YELLOW$indent""Project  : $T_PROJECT_NAME$T_COLOR_CLEAR"
   fi
-  echo -e "$T_COLOR_YELLOW  Successes: $1$T_COLOR_CLEAR"
-  echo -e "$T_COLOR_YELLOW  Failures : $2$T_COLOR_CLEAR"
+  echo -e "$T_COLOR_YELLOW$indent""Successes: $1$T_COLOR_CLEAR"
+  echo -e "$T_COLOR_YELLOW$indent""Failures : $2$T_COLOR_CLEAR"
 }
 
 
@@ -228,7 +230,7 @@ function tfinish {
     tfooter $((T_COUNT_SUCCESS)) $((T_COUNT_FAILURE)) Project
     local failure
     for failure in "${T_FAILURE_ARRAY[@]}"; do
-      echo -e "$T_COLOR_YELLOW    $failure$T_COLOR_CLEAR"
+      echo -e "$T_COLOR_YELLOW  $failure$T_COLOR_CLEAR"
     done
 
     if [ "$T_COUNT_FAILURE" -eq 0 ] && [ "$T_COUNT_SUCCESS" -gt 0 ]; then

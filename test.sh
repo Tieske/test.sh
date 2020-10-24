@@ -183,6 +183,7 @@ function tfailure {
     echo "calling tfailure without a test, call ttest first"
     exit 1
   fi
+  [[ ! "$1" == "" ]] && tmessage "$*"
   local failure="$T_CURRENT_CHAPTER: $T_CURRENT_TEST"
   echo -e "$T_COLOR_YELLOW$T_PROJECT_NAME$T_COLOR_RED [ failed  ]$T_COLOR_YELLOW $failure$T_COLOR_CLEAR"
 
@@ -205,6 +206,7 @@ function tsuccess {
     echo "calling tsuccess without a test, call ttest first"
     exit 1
   fi
+  [[ ! "$1" == "" ]] && tmessage "$*"
   echo -e "$T_COLOR_YELLOW$T_PROJECT_NAME$T_COLOR_GREEN [ success ]$T_COLOR_YELLOW $T_CURRENT_CHAPTER: $T_CURRENT_TEST$T_COLOR_CLEAR"
   ((T_COUNT_SUCCESS = T_COUNT_SUCCESS + 1))
   T_CURRENT_TEST=""
@@ -340,9 +342,9 @@ function run_test {
 
   ttest "ensures the file does NOT exist"
   if [ ! -f "some/local/file" ]; then
-    tsuccess
+    tsuccess "a success message"
   else
-    tfailure
+    tfailure "a failure message"
   fi
 
   tfinish

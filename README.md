@@ -107,7 +107,7 @@ When not in the same directory
 
   Initializes a single test file. Every `tinitialize`
   must be followed by a `tfinish`, after the tests are completed.
-  
+
   Arguments:
   * `<test suite name>` (required) name of the test suite. Only used when the
     test-file is ran independently. Will be ignored when ran in a set of
@@ -144,13 +144,19 @@ When not in the same directory
   Outputs a message. Typically used before calling `tfailure` to explain the
   reason of the failure.
 
-* `tfailure`
+* `tfailure [message...]`
 
   Marks the end of a test, with a failure.
 
-* `tsuccess`
+  Arguments:
+  * `[message...]` (optional) if given passed to `tmessage`
+
+* `tsuccess [message...]`
 
   Marks the end of a test, with a success.
+
+  Arguments:
+  * `[message...]` (optional) if given passed to `tmessage`
 
 * `tfinish`
 

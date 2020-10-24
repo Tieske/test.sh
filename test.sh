@@ -267,9 +267,6 @@ function tcreate {
   if [ "$1" == "" ]; then
     echo "first argument missing: filename to create"
     texit 1
-  elif [ -f "$1" ]; then
-    echo "file already exists: $1"
-    texit 1
   elif [ "$2" == "" ]; then
     echo "second argument missing: test suite name"
     texit 1
@@ -279,9 +276,13 @@ function tcreate {
   fi
 
   local FILENAME="$1"
-
-  if [ "$FILENAME" != "*.test.sh" ]; then
+  if [[ "$FILENAME" != *.test.sh ]]; then
     FILENAME=$FILENAME.test.sh
+  fi
+
+  if [ -f "$FILENAME" ]; then
+    echo "file already exists: $FILENAME"
+    texit 1
   fi
 
 cat <<EOF > "$FILENAME"

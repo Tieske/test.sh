@@ -3,7 +3,7 @@
 
 Minimalistic test framework for shell scripts.
 
-A test setup consists of `tests.sh` as test-runner (or `run.sh`), which is to be
+A test setup consists of `test.sh` as test-runner (or `run.sh`), which is to be
 copied into your project, combined with test files (named `*.test.sh`) which
 contain the actual tests.
 

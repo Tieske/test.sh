@@ -323,7 +323,7 @@ The test themselves are located below this comment in the "run_test" function
 '
 
 function run_test {
-  # the suite name below will only be used when rtunning this file directly, when
+  # the suite name below will only be used when running this file directly, when
   # running through "test.sh" it must be provided using the "--suite" option.
   tinitialize "$2" "\${BASH_SOURCE[0]}"
 

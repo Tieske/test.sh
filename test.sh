@@ -80,7 +80,7 @@ function theader {
   # internal function only
   local header=$1
   echo "========================================================================================================================"
-  if [ $T_FIGLET_AVAILABLE -eq 0 ]; then
+  if [ "$T_FIGLET_AVAILABLE" -eq 0 ]; then
     figlet -c -w 120 "$header"
   else
     printf "%*s\n" $(( (${#header} + 120) / 2)) "$header"
@@ -371,7 +371,6 @@ EOF
 
   echo "Successfully created a new test file: $FILENAME"
   echo "Instructions are in the file."
-  texit 0
 }
 
 
@@ -436,7 +435,7 @@ function main {
 
   tinitialize "$SUITE_NAME"
 
-  for FILENAME in ${FILE_LIST[*]}; do
+  for FILENAME in "${FILE_LIST[@]}"; do
     # shellcheck disable=SC1090
     source "$FILENAME"
   done

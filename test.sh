@@ -166,6 +166,10 @@ function ttest {
     echo "calling ttest without chapter, call tchapter first"
     exit 1
   fi
+  if [[ ! "$T_CURRENT_TEST" == "" ]]; then
+    echo "calling ttest while previous test is unfinished, call tfailure or tsuccess first"
+    exit 1
+  fi
   if [[ "$1" == "" ]]; then
     echo "calling ttest without test description"
     exit 1

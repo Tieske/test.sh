@@ -1,5 +1,5 @@
 # test.sh
-![Travis (.org) branch](https://img.shields.io/travis/com/Tieske/test.sh/master?logo=travis)
+[![Lint](https://github.com/Tieske/test.sh/actions/workflows/lint.yml/badge.svg)](https://github.com/Tieske/test.sh/actions/workflows/lint.yml)
 
 Minimalistic test framework for shell scripts.
 

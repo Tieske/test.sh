@@ -1,4 +1,0 @@
-dist: bionic
-
-script:
-- bash -c 'shopt -s globstar nullglob &> /dev/null; shellcheck **/*.{sh,ksh,bash}'
